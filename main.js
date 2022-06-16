@@ -8,6 +8,7 @@ const pathCharacter = "*";
 class Field {
   constructor(twoDimenstionalArray) {
     this._twoDimenstionalArray = twoDimenstionalArray;
+    this._playerPosition = twoDimenstionalArray[0][0];
   }
 
   print() {
@@ -19,6 +20,46 @@ class Field {
       console.log(newArr[i]);
     }
   }
+
+  get playerPosition() {
+    return this._playerPosition;
+  }
+
+  getPlayerMove = () => {
+    const userInput = prompt("where do you want to move?");
+
+    switch (userInput.toLowerCase()) {
+      case "w":
+        console.log("You pressed up.");
+        break;
+
+      case "a":
+        console.log("You pressed left.");
+        break;
+
+      case "s":
+        console.log("You pressed down.");
+        break;
+
+      case "d":
+        console.log("You pressed right.");
+        break;
+
+      case "help":
+        console.log("Controls:");
+        console.log('"w" moves up');
+        console.log('"a" moves left');
+        console.log('"s" moves down');
+        console.log('"d" moves right');
+        break;
+
+      default:
+        console.log(
+          "Invalid key.  Please use keys 'w, a, s, d' to move.  You can also type 'help' for more info."
+        );
+        break;
+    }
+  };
 }
 
 // test
@@ -28,37 +69,4 @@ const myField = new Field([
   ["░", "^", "░"],
 ]);
 
-myField.print();
-
-const getPlayerMove = () => {
-  console.log("Controls:");
-  console.log('"w" moves up');
-  console.log('"a" moves left');
-  console.log('"s" moves down');
-  console.log('"d" moves right');
-  const userInput = prompt("where do you want to move?");
-
-  switch (userInput.toLowerCase()) {
-    case "w":
-      console.log("You pressed up.");
-      break;
-
-    case "a":
-      console.log("You pressed left.");
-      break;
-
-    case "s":
-      console.log("You pressed down.");
-      break;
-
-    case "d":
-      console.log("You pressed right.");
-      break;
-
-    default:
-      console.log("Invalid key.  Please use WASD to move.");
-      break;
-  }
-};
-
-getPlayerMove();
+console.log(myField.playerPosition);
