@@ -8,7 +8,9 @@ const pathCharacter = "*";
 class Field {
   constructor(twoDimenstionalArray) {
     this._twoDimenstionalArray = twoDimenstionalArray;
-    this._playerPosition = twoDimenstionalArray[0][0];
+    // player's starting position
+    this.xAxis = 0;
+    this.yAxis = 0;
   }
 
   print() {
