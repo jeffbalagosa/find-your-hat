@@ -21,11 +21,7 @@ class Field {
     }
   }
 
-  get playerPosition() {
-    return this._playerPosition;
-  }
-
-  getPlayerMove = () => {
+  playerMove = () => {
     const userInput = prompt("where do you want to move?");
 
     switch (userInput.toLowerCase()) {
@@ -43,6 +39,8 @@ class Field {
 
       case "d":
         console.log("You pressed right.");
+        // add 1 to the second number of the index.
+        // example:  this._playerPosition[0, 0] turns into this._playerPosition[0, 1] when the player presses 'd'.
         break;
 
       case "help":
