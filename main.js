@@ -23,50 +23,126 @@ class Field {
     }
   }
 
-  playerMove = () => {
-    const userInput = prompt("where do you want to move?");
+  askPlayerToMove = () => {
+    const userInput = prompt(
+      "where do you want to move? Press w for up, s for down, a for left, and d for right."
+    );
 
     switch (userInput.toLowerCase()) {
       case "w":
-        console.log("You pressed up.");
+        console.log("Going up 1 space.");
+        this.yAxis -= 1;
         break;
 
       case "a":
-        console.log("You pressed left.");
+        console.log("Going left 1 space.");
+        this.xAxis -= 1;
         break;
 
       case "s":
-        console.log("You pressed down.");
+        console.log("Going down 1 space.");
+        this.yAxis += 1;
         break;
 
       case "d":
-        console.log("You pressed right.");
-        // add 1 to the second number of the index.
-        // example:  this._playerPosition[0, 0] turns into this._playerPosition[0, 1] when the player presses 'd'.
-        break;
-
-      case "help":
-        console.log("Controls:");
-        console.log('"w" moves up');
-        console.log('"a" moves left');
-        console.log('"s" moves down');
-        console.log('"d" moves right');
-        break;
-
-      default:
-        console.log(
-          "Invalid key.  Please use keys 'w, a, s, d' to move.  You can also type 'help' for more info."
-        );
+        console.log("Going right 1 space.");
+        this.xAxis += 1;
         break;
     }
   };
+
+  playerPosition() {
+    this._twoDimenstionalArray[this.xAxis][this.yAxis] = pathCharacter;
+    console.log(`x = ${this.xAxis}`);
+    console.log(`y = ${this.yAxis}`);
+  }
 }
 
 // test
 const myField = new Field([
-  ["*", "░", "O"],
-  ["░", "O", "░"],
-  ["░", "^", "░"],
+  [
+    pathCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
+  [
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+    fieldCharacter,
+  ],
 ]);
 
-console.log(myField.playerPosition);
+myField.print();
+myField.askPlayerToMove();
+myField.playerPosition();
+myField.print();
