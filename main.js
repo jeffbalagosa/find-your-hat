@@ -51,10 +51,10 @@ class Field {
     }
   };
 
-  playerPosition() {
-    this._twoDimenstionalArray[this.xAxis][this.yAxis] = pathCharacter;
-    console.log(`x = ${this.xAxis}`);
-    console.log(`y = ${this.yAxis}`);
+  winLossOrMoveCheck() {
+    // if this._twoDimenstionalArray[this.yAxis][this.xAxis] = fieldCharacter, move pathCharacter to that field.
+    // if this._twoDimenstionalArray[this.yAxis][this.xAxis] = hole or out of bounds,Game Over!.
+    // if this._twoDimenstionalArray[this.yAxis][this.xAxis] = hat,You Win!.
   }
 }
 
@@ -62,14 +62,14 @@ class Field {
 const myField = new Field([
   [
     pathCharacter,
-    fieldCharacter,
+    hole,
     fieldCharacter,
     fieldCharacter,
     fieldCharacter,
     fieldCharacter,
   ],
   [
-    fieldCharacter,
+    hat,
     fieldCharacter,
     fieldCharacter,
     fieldCharacter,
@@ -144,5 +144,5 @@ const myField = new Field([
 
 myField.print();
 myField.askPlayerToMove();
-myField.playerPosition();
+myField.extendPathCharacter();
 myField.print();
