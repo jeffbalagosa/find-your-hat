@@ -50,12 +50,6 @@ class Field {
         break;
     }
   };
-
-  winLossOrMoveCheck() {
-    // if this._twoDimenstionalArray[this.yAxis][this.xAxis] = fieldCharacter, move pathCharacter to that field.
-    // if this._twoDimenstionalArray[this.yAxis][this.xAxis] = hole or out of bounds,Game Over!.
-    // if this._twoDimenstionalArray[this.yAxis][this.xAxis] = hat,You Win!.
-  }
 }
 
 // test
@@ -142,7 +136,34 @@ const myField = new Field([
   ],
 ]);
 
-myField.print();
-myField.askPlayerToMove();
-myField.extendPathCharacter();
-myField.print();
+function winLossOrMoveCheck(gameStatus) {
+  if (this._twoDimenstionalArray[this.yAxis][this.xAxis] === fieldCharacter) {
+    this._twoDimenstionalArray[this.yAxis][this.xAxis] = pathCharacter;
+  } else if (this._twoDimenstionalArray[this.yAxis][this.xAxis] === hole) {
+    console.log("Game Over!  You fell into a hole.");
+    gameStatus = false;
+  } else if (this._twoDimenstionalArray[this.yAxis][this.xAxis] === hat) {
+    console.log("You win!  You found your hat.");
+    gameStatus = false;
+  } else {
+    console.log("Game Over!  You went out of bounds.");
+    gameStatus = false;
+  }
+
+  return gameStatus;
+}
+
+function game() {
+  let gameStillGoing = true;
+
+  myField.print();
+  myField.askPlayerToMove();
+  winLossOrMoveCheck(gameStillGoing);
+  myField.print();
+
+  while (winLossOrMoveCheck(gameStillGoing)) {
+    myField.askPlayerToMove();
+    winLossOrMoveCheck(gameStillGoing);
+    myField.print();
+  }
+}
