@@ -87,6 +87,7 @@ class Field {
     }
   }
 
+  // specify field size
   // populate holes
   static generateField(height, width, percentage) {
     const fieldOrHole = (percentage) => {
@@ -98,12 +99,12 @@ class Field {
           return fieldCharacter;
         }
       } else {
-        console.log("Please enter a number between 0 - 100");
+        console.log("Please enter a percentage between 0 - 100");
       }
     };
 
-    // Generate a blank field.
-    const plainField = () => {
+    // Generate a blank empty field.
+    const emptyField = () => {
       function makeWidthArray() {
         let widthArray = [];
         for (let i = 0; i < width; i++) {
@@ -111,31 +112,29 @@ class Field {
         }
         return widthArray;
       }
-      let plainField = [];
+      let emptyField = [];
       for (let i = 0; i < height; i++) {
-        plainField.push(makeWidthArray());
+        emptyField.push(makeWidthArray());
       }
-      return plainField;
+      return emptyField;
     };
 
-    const gameReadyField = plainField();
+    const completeField = emptyField();
 
-    //Adding hat on gameReadyField, while loop will check if hat sits on * and will reposition if so
+    // Add hat to completeField,
+    // Do while loop ensures hat isn't placed on player start.
     do {
-      gameReadyField[Math.floor(Math.random() * height)][
+      completeField[Math.floor(Math.random() * height)][
         Math.floor(Math.random() * width)
       ] = hat;
-    } while (gameReadyField[0][0] == hat);
+    } while (completeField[0][0] == hat);
 
     //Adding pathCharacter to left-upper corner
-    gameReadyField[0][0] = pathCharacter;
+    completeField[0][0] = pathCharacter;
 
-    return gameReadyField;
+    return completeField;
   }
 }
-
-//Generating a new randomized field into "newField" and will insert to "myField" below:
-//generateField() takes 3 parameters. First is the y-axis, second is x-axis and third id the percentage of holes in the field(Please enter between 0 - 100).
 
 const myField = new Field(Field.generateField(10, 10, 30));
 
