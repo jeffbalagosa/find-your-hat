@@ -138,7 +138,7 @@ class Field {
 
 const myField = new Field(Field.generateField(10, 10, 30));
 
-function game() {
+function playGame() {
   while (gameStillGoing) {
     console.log(myField.print());
     myField.playerMove();
@@ -147,4 +147,4 @@ function game() {
   console.log("Play again?");
 }
 
-game();
+playGame();
